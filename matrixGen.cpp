@@ -1,13 +1,23 @@
-#include <GL/glew.h>    // ??
+#include <GL/glew.h>    // ?? opengl stuff?
 #include <GLFW/glfw3.h> // glfw to handle opengl
-#include <iostream>     // handles input & output
-#include <stdlib.h>     // random number stuff
-#include <time.h>       // use time() to seed random numbers
+#include <chrono>
+#include <iostream> // handles input & output
+#include <map>      // keymapping
+#include <stdio.h>
+#include <stdlib.h> // random number stuff
+#include <time.h>   // use time() to seed random numbers
+
+#define WIDTH 800
+#define HEIGHT 600
+
+struct key {
+  bool cur, prev;
+};
 
 GLFWwindow *window;
 GLFWmonitor *display;
 bool running = 1, fullscreen = 0;
-map<int, key> Keymap;
+std::map<int, key> keyMap;
 
 void update() {
   // update frame
@@ -21,20 +31,20 @@ void draw() {
 
 int main() {
 
-  // initialize random seed
-  srand(time(NULL));
+  // keep the window alive unless its told not to
   while (running) {
     update();
     input();
     draw();
   }
 
+  /* // EVERYTHING MATRIX-BASED NOT RUNNING RN
   class matrixObj {
   private:
     // initialize
     int worldSize = 2;
     const int worldSizeMax = 16;
-    string worldName;
+    std::string worldName;
 
   public:
     // generate a 3d cubic matrix of n^3 items
@@ -51,6 +61,9 @@ int main() {
       if (worldSize > worldSizeMax) { // check if world size is bigger than 16
         cout << "world size can be no larger than " << to_string(worldSizeMax);
       } else {
+        // initialize random seed
+        srand(time(NULL));
+        
         // generate world of size worldSize
         cout << "generating world of size [" << to_string(worldSize)
              << "] with [" << worldSize * worldSize * worldSize
@@ -79,6 +92,7 @@ int main() {
 
   // via the matrixWorld instance, generate a matrix
   matrixWorld.generate();
+  */
 
   return 0;
 }

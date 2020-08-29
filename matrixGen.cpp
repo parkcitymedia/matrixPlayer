@@ -14,7 +14,7 @@ int main() {
     const int worldSizeMax = 126;
 
   public:
-    string generate() {
+    int generate() {
       if (worldSize > worldSizeMax) { // check if world size is bigger than 16
         cout << "world size can be no larger than " << to_string(worldSizeMax);
       } else {
@@ -36,9 +36,9 @@ int main() {
       }
       return 0;
     }
+    int cleanUp() {
+      return 0;
+    }
   };
-
-  // specify world size
-  cout << "world size: ";
-  cin >> worldSize;
+  return 0;
 }

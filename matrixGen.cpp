@@ -10,7 +10,7 @@ int main() {
   // initialize random seed
   srand(time(NULL));
 
-  class matrixWorld {
+  class matrixObj {
   private:
     // initialize 
     int worldSize = 2;
@@ -18,6 +18,7 @@ int main() {
     string worldName;
 
   public:
+    // generate a 3d cubic matrix of n^3 items
     int generate() {
 
       // ask for world name
@@ -49,8 +50,16 @@ int main() {
       }
       return 0;
     }
+
+    // free resources?
     int cleanUp() { return 0; }
   };
+
+  // instance of matrixObj called matrixWorld
+  matrixObj matrixWorld;
+
+  // via the matrixWorld instance, generate a matrix
+  matrixWorld.generate();
 
   return 0;
 }

@@ -48,8 +48,6 @@ int main() {
     }
     int cleanUp() { return 0; }
   };
-
-  matrixWorld myMatrixWorld;
-  myMatrixWorld.generate();
+  
   return 0;
 }

@@ -1,15 +1,18 @@
-#include <iostream> // handles input & output
-#include <stdlib.h> // random number stuff
-#include <time.h>   // used to seed random numbers
+#include <GLFW/glfw3.h> // glfw to handle opengl
+#include <iostream>     // handles input & output
+#include <stdlib.h>     // random number stuff
+#include <time.h>       // use time() to seed random numbers
 
 using namespace std; // makes shit work with less typing
 
 int main() {
+ 
   // initialize random seed
   srand(time(NULL));
 
   class matrixWorld {
   private:
+    // initialize 
     int worldSize = 2;
     const int worldSizeMax = 16;
     string worldName;
@@ -48,6 +51,6 @@ int main() {
     }
     int cleanUp() { return 0; }
   };
-  
+
   return 0;
 }

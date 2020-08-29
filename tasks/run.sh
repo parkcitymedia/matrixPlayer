@@ -6,5 +6,8 @@ function runProg () {
     ./a.out
 }
 
+# output directory
+OUTPUTDIR="../tasks"
+
 # tee the output to both stdout and stderr
-runProg | tee runOutput.txt
+runProg | tee $OUTPUTDIR/runOutput.txt

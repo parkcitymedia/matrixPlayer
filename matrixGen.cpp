@@ -1,13 +1,13 @@
+#include <GL/glew.h>    // ??
 #include <GLFW/glfw3.h> // glfw to handle opengl
 #include <iostream>     // handles input & output
 #include <stdlib.h>     // random number stuff
 #include <time.h>       // use time() to seed random numbers
 
-using namespace std; // makes shit work with less typing
-
-GLFWwindow* window;
-GLFWmonitor* display;
-bool running = 1;
+GLFWwindow *window;
+GLFWmonitor *display;
+bool running = 1, fullscreen = 0;
+map<int, key> Keymap;
 
 void update() {
   // update frame
@@ -20,10 +20,10 @@ void draw() {
 }
 
 int main() {
- 
+
   // initialize random seed
   srand(time(NULL));
-  while(running) {
+  while (running) {
     update();
     input();
     draw();
@@ -31,7 +31,7 @@ int main() {
 
   class matrixObj {
   private:
-    // initialize 
+    // initialize
     int worldSize = 2;
     const int worldSizeMax = 16;
     string worldName;

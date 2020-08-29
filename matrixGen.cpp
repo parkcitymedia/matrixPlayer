@@ -11,10 +11,20 @@ int main() {
   class matrixWorld {
   private:
     int worldSize = 2;
-    const int worldSizeMax = 126;
+    const int worldSizeMax = 16;
+    string worldName;
 
   public:
     int generate() {
+
+      // ask for world name
+      cout << "world name: ";
+      cin >> worldName;
+
+      // ask for world size
+      cout << "world size (max " << worldSizeMax << "): ";
+      cin >> worldSize;
+
       if (worldSize > worldSizeMax) { // check if world size is bigger than 16
         cout << "world size can be no larger than " << to_string(worldSizeMax);
       } else {
@@ -36,9 +46,10 @@ int main() {
       }
       return 0;
     }
-    int cleanUp() {
-      return 0;
-    }
+    int cleanUp() { return 0; }
   };
+
+  matrixWorld myMatrixWorld;
+  myMatrixWorld.generate();
   return 0;
 }

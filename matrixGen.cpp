@@ -5,10 +5,29 @@
 
 using namespace std; // makes shit work with less typing
 
+GLFWwindow* window;
+GLFWmonitor* display;
+bool running = 1;
+
+void update() {
+  // update frame
+}
+void input() {
+  // input frame
+}
+void draw() {
+  // draw to frame
+}
+
 int main() {
  
   // initialize random seed
   srand(time(NULL));
+  while(running) {
+    update();
+    input();
+    draw();
+  }
 
   class matrixObj {
   private:

@@ -7,4 +7,4 @@ function runProg () {
 }
 
 # tee the output to both stdout and stderr
-runProg | tee output.txt
+runProg | tee runOutput.txt

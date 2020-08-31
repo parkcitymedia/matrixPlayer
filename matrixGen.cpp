@@ -1,5 +1,4 @@
 #define GLEW_STATIC
-//#include <GL/gl.h> // ?? opengl stuff?
 #include <GL/glew.h>
 #include <GLFW/glfw3.h> // glfw to handle opengl
 #include <chrono>

@@ -10,6 +10,14 @@
 
 const GLint WIDTH = 1280, HEIGHT = 720;
 
+// current / previous key checks
+struct key {
+  bool cur, prev;
+};
+
+// iniitialize global attributes
+std::map<int, key> keyMap;
+
 // Vertex Shader Source / GLSL code for vertexes
 const GLchar *vertexShaderSource = "\
   #version 330 core\n\
@@ -26,15 +34,6 @@ const GLchar *fragmentShaderSource = "\
   }\
   ";
 
-// current / previous key checks
-struct key {
-  bool cur, prev;
-};
-
-// iniitialize global attributes
-
-bool running = 1, fullscreen;
-std::map<int, key> keyMap;
 
 class GLFWObj {
 private:
@@ -44,6 +43,9 @@ public:
   // abstract window and monitor instances
   GLFWwindow *window;
   GLFWmonitor *monitor;
+
+  // test if running
+  bool running, fullscreen;
 
   // update frame
   void update() {
@@ -114,73 +116,17 @@ int main() {
   // set primary monitor
   GLFWInstance.monitor = glfwGetPrimaryMonitor();
 
-  running = true;
-  fullscreen = false;
+  GLFWInstance.running = true;
+  GLFWInstance.fullscreen = false;
 
   // keep the window alive unless its told not to
-  while (running) {
+  while (GLFWInstance.running) {
     GLFWInstance.update();
     GLFWInstance.input();
     GLFWInstance.draw();
   }
 
-  /* // EVERYTHING MATRIX-BASED NOT RUNNING RN
-  class matrixObj {
-  private:
-    // initialize
-    int worldSize = 2;
-    const int worldSizeMax = 16;
-    std::string worldName;
-
-  public:
-    // generate a 3d cubic matrix of n^3 items
-    int generate() {
-
-      // ask for world name
-      cout << "world name: ";
-      cin >> worldName;
-
-      // ask for world size
-      cout << "world size (max " << worldSizeMax << "): ";
-      cin >> worldSize;
-
-      if (worldSize > worldSizeMax) { // check if world size is bigger than 16
-        cout << "world size can be no larger than " << to_string(worldSizeMax);
-      } else {
-        // initialize random seed
-        srand(time(NULL));
-
-        // generate world of size worldSize
-        cout << "generating world of size [" << to_string(worldSize)
-             << "] with [" << worldSize * worldSize * worldSize
-             << "] elements...\n";
-        int world[worldSize][worldSize][worldSize];
-
-        // loop through all z for all y for all x and assign values
-        for (int xpos = 0; xpos < worldSize; xpos++) {
-          for (int ypos = 0; ypos < worldSize; ypos++) {
-            for (int zpos = 0; zpos < worldSize; zpos++) {
-              world[xpos][ypos][zpos] = rand() % 4;
-              cout << "world[" << to_string(xpos) << "," << to_string(ypos)
-                   << "," << to_string(zpos)
-                   << "]: " << to_string(world[xpos][ypos][zpos]) << "\n";
-            }
-          }
-        }
-      }
-      return 0;
-    }
-
-    // free resources?
-    int cleanUp() { return 0; }
-  };
-
-  // instance of matrixObj called matrixWorld
-  matrixObj matrixWorld;
-
-  // via the matrixWorld instance, generate a matrix
-  matrixWorld.generate();
-  */
+  
 
   // end glfw loop
   glfwDestroyWindow(GLFWInstance.window);

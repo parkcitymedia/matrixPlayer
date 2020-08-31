@@ -4,7 +4,7 @@
 #include <chrono>
 #include <iostream> // handles input & output
 #include <map>      // keymapping
-#include <stdio.h>
+//#include <stdio.h> // not needed atm
 #include <stdlib.h> // random number stuff
 #include <time.h>   // use time() to seed random numbers
 
@@ -113,10 +113,7 @@ int main() {
     glfwTerminate();
   }
 
-  // make window context current?
   glfwMakeContextCurrent(GLFWInst.window);
-
-  // set primary monitor
   GLFWInst.monitor = glfwGetPrimaryMonitor();
 
   GLFWInst.running = true;

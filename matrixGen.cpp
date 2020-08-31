@@ -11,18 +11,20 @@
 const GLint WIDTH = 1280, HEIGHT = 720;
 
 // Vertex Shader Source / GLSL code for vertexes
-const GLchar *vertexShaderSource =
-    "#version 330 core\n"
-    "layout ( location = 0 ) in vec3 position;\n"
-    "void main( ) {\n"
-    "gl_position = vec4( position.x, position.y, position.z, 1.0 );\n"
-    "}";
+const GLchar *vertexShaderSource = "\
+  #version 330 core\n\
+  layout ( location = 0 ) in vec3 position;\n\
+  void main( ) {\n\
+  gl_position = vec4( position.x, position.y, position.z, 1.0 );\n\
+  }";
 
 // fragment shader source, colors
-const GLchar *fragmentShaderSource = "#version 330 core\n"
-                                     "void main( ) {\n"
-                                     "color = vec4( 1.0f, 0.5f, 0.2f, 1.0f );\n"
-                                     "}";
+const GLchar *fragmentShaderSource = "\
+  #version 330 core\n\
+  void main( ) {\n\
+  color = vec4( 1.0f, 0.5f, 0.2f, 1.0f );\n\
+  }\
+  ";
 
 // current / previous key checks
 struct key {

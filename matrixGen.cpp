@@ -1,4 +1,5 @@
-#include <GL/glew.h>    // ?? opengl stuff?
+#include <GL/gl.h>
+//#include <GL/glew.h>    // ?? opengl stuff?
 #include <GLFW/glfw3.h> // glfw to handle opengl
 #include <chrono>
 #include <iostream> // handles input & output
@@ -15,27 +16,89 @@ struct key {
 };
 
 GLFWwindow *window;
-GLFWmonitor *display;
+GLFWmonitor *monitor;
 bool running = 1, fullscreen = 0;
 std::map<int, key> keyMap;
 
-void update() {
+class GLFWInstance {
+private:
+public:
   // update frame
-}
-void input() {
-  // input frame
-}
-void draw() {
+  void update() {
+    // update frame
+  }
+
+  // take keyinput
+  void input() {
+    //
+    glfwPollEvents();
+
+    // if ESC pressed
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
+
+      // close window
+      running = false;
+      glfwSetWindowShouldClose(window, 1);
+    }
+
+    // if close button pressed
+  }
+
   // draw to frame
-}
+  void draw() {
+
+    // draw background color
+    glClearColor(0.16, 0.2, 0.2, 0.0);
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    // draw on top of cleared color
+
+    // swap GL buffers
+    glfwSwapBuffers(window);
+  }
+};
 
 int main() {
 
+  // instance GLFWInstance
+  GLFWInstance winGLFW;
+
+  // window hints
+  glfwWindowHint(GLFW_SAMPLES, 4);
+  glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
+
+  // check if initialized properly
+  if (!glfwInit()) {
+    fprintf(stderr, "\n\nfailed to properly initialize GLFW\n\n");
+  }
+
+  // set the window reference to create a window
+  window = glfwCreateWindow(WIDTH, HEIGHT, "Matrix Player", NULL, NULL);
+
+  if (window == NULL) {
+
+    // yells at user about it
+    std::cout << "\n\nfailed to open GLFW window\n\n";
+
+    // terminate GLFW instance ...
+    // ... since it's obviously not working
+    glfwTerminate();
+  }
+
+  // make window context current?
+  glfwMakeContextCurrent(window);
+
+  // set primary monitor
+  monitor = glfwGetPrimaryMonitor();
+
+  running = true;
+  fullscreen = false;
+
   // keep the window alive unless its told not to
   while (running) {
-    update();
-    input();
-    draw();
+    winGLFW.update();
+    winGLFW.input();
+    winGLFW.draw();
   }
 
   /* // EVERYTHING MATRIX-BASED NOT RUNNING RN
@@ -63,12 +126,14 @@ int main() {
       } else {
         // initialize random seed
         srand(time(NULL));
-        
+
         // generate world of size worldSize
         cout << "generating world of size [" << to_string(worldSize)
              << "] with [" << worldSize * worldSize * worldSize
              << "] elements...\n";
         int world[worldSize][worldSize][worldSize];
+
+        // loop through all z for all y for all x and assign values
         for (int xpos = 0; xpos < worldSize; xpos++) {
           for (int ypos = 0; ypos < worldSize; ypos++) {
             for (int zpos = 0; zpos < worldSize; zpos++) {
@@ -94,5 +159,8 @@ int main() {
   matrixWorld.generate();
   */
 
+  // end glfw loop
+  glfwDestroyWindow(window);
+  glfwTerminate();
   return 0;
 }

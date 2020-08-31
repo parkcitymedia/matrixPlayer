@@ -15,7 +15,14 @@ const GLchar *vertexShaderSource =
     "#version 330 core\n"
     "layout ( location = 0 ) in vec3 position;\n"
     "void main( ) {\n"
-    "gl_position = vec4( position.x, position.y, position.z, 1.0 )";
+    "gl_position = vec4( position.x, position.y, position.z, 1.0 );\n"
+    "}";
+
+// fragment shader source, colors
+const GLchar *fragmentShaderSource = "#version 330 core\n"
+                                     "void main( ) {\n"
+                                     "color = vec4( 1.0f, 0.5f, 0.2f, 1.0f );\n"
+                                     "}";
 
 // current / previous key checks
 struct key {
@@ -23,8 +30,7 @@ struct key {
 };
 
 // iniitialize global attributes
-GLFWwindow *window;
-GLFWmonitor *monitor;
+
 bool running = 1, fullscreen;
 std::map<int, key> keyMap;
 
@@ -33,6 +39,10 @@ private:
   // initialize private vars / methods
 
 public:
+  // abstract window and monitor instances
+  GLFWwindow *window;
+  GLFWmonitor *monitor;
+
   // update frame
   void update() {
     // update frame
@@ -83,9 +93,10 @@ int main() {
   }
 
   // set the window reference to create a window
-  window = glfwCreateWindow(WIDTH, HEIGHT, "Matrix Player", NULL, NULL);
+  GLFWInstance.window =
+      glfwCreateWindow(WIDTH, HEIGHT, "Matrix Player", NULL, NULL);
 
-  if (window == NULL) {
+  if (GLFWInstance.window == NULL) {
 
     // yells at user about it
     std::cout << "\n\nfailed to open GLFW window\n\n";
@@ -96,10 +107,10 @@ int main() {
   }
 
   // make window context current?
-  glfwMakeContextCurrent(window);
+  glfwMakeContextCurrent(GLFWInstance.window);
 
   // set primary monitor
-  monitor = glfwGetPrimaryMonitor();
+  GLFWInstance.monitor = glfwGetPrimaryMonitor();
 
   running = true;
   fullscreen = false;
@@ -170,7 +181,7 @@ int main() {
   */
 
   // end glfw loop
-  glfwDestroyWindow(window);
+  glfwDestroyWindow(GLFWInstance.window);
   glfwTerminate();
   return 0;
 }

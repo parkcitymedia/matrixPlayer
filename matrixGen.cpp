@@ -1,6 +1,6 @@
 #define GLEW_STATIC
-#include <GL/glew.h> 
-#include <GL/gl.h>   // ?? opengl stuff?
+//#include <GL/gl.h> // ?? opengl stuff?
+#include <GL/glew.h>
 #include <GLFW/glfw3.h> // glfw to handle opengl
 #include <chrono>
 #include <iostream> // handles input & output
@@ -17,6 +17,14 @@ const GLint WIDTH = 1280, HEIGHT = 720;
 #define HEIGHT 600
 */
 
+// Vertex Shader Source / GLSL code for vertexes
+const GLchar *vertexShaderSource =
+    "#version 330 core\n"
+    "layout ( location = 0 ) in vec3 position;\n"
+    "void main( ) {\n"
+    "gl_position = vec4( position.x, position.y, position.z, 1.0 )";
+
+// current / previous key checks
 struct key {
   bool cur, prev;
 };

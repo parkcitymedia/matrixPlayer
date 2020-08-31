@@ -18,6 +18,8 @@ struct key {
 // iniitialize global attributes
 std::map<int, key> keyMap;
 
+/* //using different tutorial
+
 // Vertex Shader Source / GLSL code for vertexes
 const GLchar *vertexShaderSource = "\
   #version 330 core\n\
@@ -33,6 +35,8 @@ const GLchar *fragmentShaderSource = "\
   color = vec4( 1.0f, 0.5f, 0.2f, 1.0f );\n\
   }\
   ";
+
+*/
 
 class GLFWObj {
 private:

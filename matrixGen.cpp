@@ -92,9 +92,9 @@ int main() {
     fprintf(stderr, "\n\nfailed to properly initialize GLFW\n\n");
   }
 
-   // instance GLFWInstance
+   // create GLFWObj instance GLFWInstance
   GLFWObj GLFWInstance;
-  
+
   // set the window reference to create a window
   GLFWInstance.window =
       glfwCreateWindow(WIDTH, HEIGHT, "Matrix Player", nullptr, nullptr);

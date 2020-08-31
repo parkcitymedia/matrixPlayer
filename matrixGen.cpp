@@ -18,25 +18,22 @@ struct key {
 // iniitialize global attributes
 std::map<int, key> keyMap;
 
-/* //using different tutorial
-
 // Vertex Shader Source / GLSL code for vertexes
 const GLchar *vertexShaderSource = "\
-  #version 330 core\n\
-  layout ( location = 0 ) in vec3 position;\n\
+  #version 400\n\
+  in vec3 vp;\n\
   void main( ) {\n\
-  gl_position = vec4( position.x, position.y, position.z, 1.0 );\n\
+    gl_position = vec4( vp, 1.0 );\n\
   }";
 
 // fragment shader source, colors
 const GLchar *fragmentShaderSource = "\
-  #version 330 core\n\
+  #version 400\n\
   void main( ) {\n\
+  out vec4 frag_color;\n\
   color = vec4( 1.0f, 0.5f, 0.2f, 1.0f );\n\
   }\
   ";
-
-*/
 
 class GLFWObj {
 private:
@@ -87,14 +84,14 @@ public:
 
 int main() {
 
-  // window hints
-  glfwWindowHint(GLFW_SAMPLES, 4);
-  glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
-
   // check if initialized properly
   if (!glfwInit()) {
     fprintf(stderr, "\n\nfailed to properly initialize GLFW\n\n");
   }
+
+  // window hints
+  glfwWindowHint(GLFW_SAMPLES, 4);
+  glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
 
   // create GLFWObj instance GLFWInst
   GLFWObj GLFWInst;

@@ -11,12 +11,6 @@
 
 const GLint WIDTH = 1280, HEIGHT = 720;
 
-/*
-// moved to GLint type
-#define WIDTH 800
-#define HEIGHT 600
-*/
-
 // Vertex Shader Source / GLSL code for vertexes
 const GLchar *vertexShaderSource =
     "#version 330 core\n"

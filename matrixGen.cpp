@@ -9,8 +9,13 @@
 #include <stdlib.h> // random number stuff
 #include <time.h>   // use time() to seed random numbers
 
+const GLint WIDTH = 1280, HEIGHT = 720;
+
+/*
+// moved to GLint type
 #define WIDTH 800
 #define HEIGHT 600
+*/
 
 struct key {
   bool cur, prev;

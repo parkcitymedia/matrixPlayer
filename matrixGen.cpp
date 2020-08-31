@@ -34,7 +34,6 @@ const GLchar *fragmentShaderSource = "\
   }\
   ";
 
-
 class GLFWObj {
 private:
   // initialize private vars / methods
@@ -98,9 +97,9 @@ int main() {
 
   // set the window reference to create a window
   GLFWInstance.window =
-      glfwCreateWindow(WIDTH, HEIGHT, "Matrix Player", NULL, NULL);
+      glfwCreateWindow(WIDTH, HEIGHT, "Matrix Player", nullptr, nullptr);
 
-  if (GLFWInstance.window == NULL) {
+  if (GLFWInstance.window == nullptr) {
 
     // yells at user about it
     std::cout << "\n\nfailed to open GLFW window\n\n";
@@ -125,8 +124,6 @@ int main() {
     GLFWInstance.input();
     GLFWInstance.draw();
   }
-
-  
 
   // end glfw loop
   glfwDestroyWindow(GLFWInstance.window);

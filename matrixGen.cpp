@@ -83,9 +83,6 @@ public:
 
 int main() {
 
-  // instance GLFWInstance
-  GLFWObj GLFWInstance;
-
   // window hints
   glfwWindowHint(GLFW_SAMPLES, 4);
   glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
@@ -95,6 +92,9 @@ int main() {
     fprintf(stderr, "\n\nfailed to properly initialize GLFW\n\n");
   }
 
+   // instance GLFWInstance
+  GLFWObj GLFWInstance;
+  
   // set the window reference to create a window
   GLFWInstance.window =
       glfwCreateWindow(WIDTH, HEIGHT, "Matrix Player", nullptr, nullptr);

@@ -96,14 +96,14 @@ int main() {
     fprintf(stderr, "\n\nfailed to properly initialize GLFW\n\n");
   }
 
-   // create GLFWObj instance GLFWInstance
-  GLFWObj GLFWInstance;
+  // create GLFWObj instance GLFWInst
+  GLFWObj GLFWInst;
 
   // set the window reference to create a window
-  GLFWInstance.window =
+  GLFWInst.window =
       glfwCreateWindow(WIDTH, HEIGHT, "Matrix Player", nullptr, nullptr);
 
-  if (GLFWInstance.window == nullptr) {
+  if (GLFWInst.window == nullptr) {
 
     // yells at user about it
     std::cout << "\n\nfailed to open GLFW window\n\n";
@@ -114,23 +114,23 @@ int main() {
   }
 
   // make window context current?
-  glfwMakeContextCurrent(GLFWInstance.window);
+  glfwMakeContextCurrent(GLFWInst.window);
 
   // set primary monitor
-  GLFWInstance.monitor = glfwGetPrimaryMonitor();
+  GLFWInst.monitor = glfwGetPrimaryMonitor();
 
-  GLFWInstance.running = true;
-  GLFWInstance.fullscreen = false;
+  GLFWInst.running = true;
+  GLFWInst.fullscreen = false;
 
   // keep the window alive unless its told not to
-  while (GLFWInstance.running) {
-    GLFWInstance.update();
-    GLFWInstance.input();
-    GLFWInstance.draw();
+  while (GLFWInst.running) {
+    GLFWInst.update();
+    GLFWInst.input();
+    GLFWInst.draw();
   }
 
   // end glfw loop
-  glfwDestroyWindow(GLFWInstance.window);
+  glfwDestroyWindow(GLFWInst.window);
   glfwTerminate();
   return 0;
 }

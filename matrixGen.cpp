@@ -1,5 +1,6 @@
-#include <GL/gl.h>
-//#include <GL/glew.h>    // ?? opengl stuff?
+#define GLEW_STATIC
+#include <GL/glew.h> 
+#include <GL/gl.h>   // ?? opengl stuff?
 #include <GLFW/glfw3.h> // glfw to handle opengl
 #include <chrono>
 #include <iostream> // handles input & output
@@ -15,13 +16,16 @@ struct key {
   bool cur, prev;
 };
 
+// iniitialize global attributes
 GLFWwindow *window;
 GLFWmonitor *monitor;
-bool running = 1, fullscreen = 0;
+bool running = 1, fullscreen;
 std::map<int, key> keyMap;
 
-class GLFWInstance {
+class GLFWObj {
 private:
+  // initialize private vars / methods
+
 public:
   // update frame
   void update() {
@@ -61,7 +65,7 @@ public:
 int main() {
 
   // instance GLFWInstance
-  GLFWInstance winGLFW;
+  GLFWObj GLFWInstance;
 
   // window hints
   glfwWindowHint(GLFW_SAMPLES, 4);
@@ -96,9 +100,9 @@ int main() {
 
   // keep the window alive unless its told not to
   while (running) {
-    winGLFW.update();
-    winGLFW.input();
-    winGLFW.draw();
+    GLFWInstance.update();
+    GLFWInstance.input();
+    GLFWInstance.draw();
   }
 
   /* // EVERYTHING MATRIX-BASED NOT RUNNING RN

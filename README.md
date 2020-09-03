@@ -4,4 +4,4 @@
 - utilizing c++
 
 ## RESOURCES
-(https://antongerdelan.net/opengl/hellotriangle.html "Anton Gerdelan, 'Hello Triangle'")
+["Anton Gerdelan, Hello Triangle 2016.10.02"](https://antongerdelan.net/opengl/hellotriangle.html)

@@ -110,6 +110,10 @@ int main() {
     glfwTerminate();
   }
 
+  // init values for screen width and height
+  int screenWidth, screenHeight;
+  glfwGetFramebufferSize(GLFWInst.window, &screenWidth, &screenHeight);
+
   glfwMakeContextCurrent(GLFWInst.window);
   GLFWInst.monitor = glfwGetPrimaryMonitor();
 

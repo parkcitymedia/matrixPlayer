@@ -1,14 +1,14 @@
 #define GLEW_STATIC
 #include <GL/glew.h>
 #include <GLFW/glfw3.h> // glfw to handle opengl
-#include <chrono>
-#include <iostream> // handles input & output
-#include <map>      // keymapping
-//#include <stdio.h> // not needed atm
+#include <chrono>       // not sure
+#include <iostream>     // handles input & output
+#include <map>          // keymapping
+//#include <stdio.h>    // not needed atm
 #include <stdlib.h> // random number stuff
 #include <time.h>   // use time() to seed random numbers
 
-const GLint WIDTH = 1280, HEIGHT = 720;
+// const GLint WIDTH = 1280, HEIGHT = 720;
 
 // current / previous key checks
 struct key {
@@ -40,6 +40,9 @@ private:
   // initialize private vars / methods
 
 public:
+  // window dimensions
+  const GLint WIDTH = 1280, HEIGHT = 720;
+
   // abstract window and monitor instances
   GLFWwindow *window;
   GLFWmonitor *monitor;
@@ -97,8 +100,8 @@ int main() {
   GLFWObj GLFWInst;
 
   // set the window reference to create a window
-  GLFWInst.window =
-      glfwCreateWindow(WIDTH, HEIGHT, "Matrix Player", nullptr, nullptr);
+  GLFWInst.window = glfwCreateWindow(GLFWInst.WIDTH, GLFWInst.HEIGHT,
+                                     "Matrix Player", nullptr, nullptr);
 
   if (GLFWInst.window == nullptr) {
 

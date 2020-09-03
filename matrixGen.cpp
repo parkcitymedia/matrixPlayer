@@ -20,73 +20,72 @@ struct key
 // iniitialize global attributes
 std::map<int, key> keyMap;
 
-// Vertex Shader Source / GLSL code for vertex buffers
-const GLchar *vertexShaderSource =
-	"#version 400\n"
-	"in vec3 vp;\n"
-	"void main( ) {\n"
-	"  gl_position = vec4( vp, 1.0 );\n"
-	"}";
-
-// fragment shader source, colors
-const GLchar *fragmentShaderSource =
-	"#version 400\n"
-	"void main( ) {\n"
-	"  out vec4 frag_color;\n"
-	"  color = vec4( 1.0f, 0.5f, 0.2f, 1.0f );\n"
-	"}";
-
-// window dimensions
-const GLint WIDTH = 1280, HEIGHT = 720;
-
-// test if running
-bool running, fullscreen;
-
-// update frame
-void update()
-{
-	// update frame
-}
-
-// take keyinput
-void input()
-{
-	//
-	glfwPollEvents();
-
-	// if ESC pressed
-	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-	{
-
-		// close window
-		running = false;
-		glfwSetWindowShouldClose(window, 1);
-	}
-
-	// if close button pressed
-}
-
-// draw to frame
-void draw()
-{
-
-	// draw background color
-	glClearColor(0.16, 0.2, 0.2, 0.0);
-	glClear(GL_COLOR_BUFFER_BIT);
-
-	// draw on top of cleared color
-
-	// swap GL buffers
-	glfwSwapBuffers(window);
-}
-
 // main takes no arguments
 int main(void)
 {
+	// Vertex Shader Source / GLSL code for vertex buffers
+	const GLchar *vertexShaderSource =
+		"#version 400\n"
+		"in vec3 vp;\n"
+		"void main( ) {\n"
+		"  gl_position = vec4( vp, 1.0 );\n"
+		"}";
+
+	// fragment shader source, colors
+	const GLchar *fragmentShaderSource =
+		"#version 400\n"
+		"void main( ) {\n"
+		"  out vec4 frag_color;\n"
+		"  color = vec4( 1.0f, 0.5f, 0.2f, 1.0f );\n"
+		"}";
+
+	// window dimensions
+	const GLint WIDTH = 1280, HEIGHT = 720;
+
 	// abstract window and monitor instances
 	GLFWwindow *window;
 	GLFWmonitor *monitor;
 
+	// test if running
+	bool running, fullscreen;
+
+	// update frame
+	void update() {
+		;
+	}
+
+	// take keyinput
+	void input()
+	{
+		//
+		glfwPollEvents();
+
+		// if ESC pressed
+		if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+		{
+
+			// close window
+			running = false;
+			glfwSetWindowShouldClose(window, 1);
+		}
+
+		// if close button pressed
+	}
+
+	// draw to frame
+	void draw()
+	{
+
+		// draw background color
+		glClearColor(0.16, 0.2, 0.2, 0.0);
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		// draw on top of cleared color
+
+		// swap GL buffers
+		glfwSwapBuffers(window);
+	}
+	
 	// check if initialized properly
 	if (!glfwInit())
 	{
@@ -140,7 +139,7 @@ int main(void)
 	if (!success)
 	{
 		glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
-		std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n";
+		std::cout << "\nERROR::SHADER::VERTEX::COMPILATION_FAILED\n\n";
 	}
 
 	GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
@@ -151,7 +150,7 @@ int main(void)
 	if (!success)
 	{
 		glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
-		std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n";
+		std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n\n";
 	}
 
 	GLuint shaderProgram = glCreateProgram();
@@ -163,7 +162,7 @@ int main(void)
 	if (!success)
 	{
 		glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
-		std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED";
+		std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n\n";
 	}
 
 	glDeleteShader(vertexShader);

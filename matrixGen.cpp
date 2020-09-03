@@ -39,10 +39,6 @@ const GLchar *fragmentShaderSource =
 // window dimensions
 const GLint WIDTH = 1280, HEIGHT = 720;
 
-// abstract window and monitor instances
-GLFWwindow *window;
-GLFWmonitor *monitor;
-
 // test if running
 bool running, fullscreen;
 
@@ -87,6 +83,9 @@ void draw()
 // main takes no arguments
 int main(void)
 {
+	// abstract window and monitor instances
+	GLFWwindow *window;
+	GLFWmonitor *monitor;
 
 	// check if initialized properly
 	if (!glfwInit())
